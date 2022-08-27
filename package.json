@@ -5,7 +5,8 @@
   "main": "./index.ts",
   "scripts": {
     "tsc": "nodemon",
-    "dev": "./node_modules/.bin/ts-node-dev --respawn ./index.ts"
+    "dev": "./node_modules/.bin/ts-node-dev --respawn ./index.ts",
+    "jumia":"node_modules/.bin/ts-node-dev --respawn ./scrap/jumia.ts"
   },
   "nodemonConfig": {
     "watch": [
