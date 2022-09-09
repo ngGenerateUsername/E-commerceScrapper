@@ -1,4 +1,4 @@
-import puppeteer, { ElementHandle } from "puppeteer";
+import puppeteer from "puppeteer";
 import { JumiaModel } from "../types/jumiaModel";
 
 const grapInfoJumia = async (path: string, page: puppeteer.Page): Promise<String> => {
@@ -29,7 +29,7 @@ const jumiaProducts = async (productSearch: String):Promise<JumiaModel[] |null> 
             //get id of product
             const id:String = await grapInfoJumia(`//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[${i}]/a/@data-id`, page);
 
-            //get id of product
+            //get category of product
             const categorie:String = await grapInfoJumia(`//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[${i}]/a/@data-category`, page);
             
             //get data-name awiat path here

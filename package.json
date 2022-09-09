@@ -6,7 +6,8 @@
   "scripts": {
     "tsc": "nodemon",
     "dev": "./node_modules/.bin/ts-node-dev --respawn ./index.ts",
-    "jumia":"node_modules/.bin/ts-node-dev --respawn ./scrap/jumia.ts"
+    "jumia": "node_modules/.bin/ts-node-dev --respawn ./scrap/jumia.ts",
+    "wiki": "node_modules/.bin/ts-node-dev --respawn ./scrap/wiki.ts"
   },
   "nodemonConfig": {
     "watch": [
@@ -22,6 +23,7 @@
     "puppeteer": "^16.0.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
