@@ -1,4 +1,5 @@
 import  puppeteer  from "puppeteer";
+import { productModel } from "../types/productModel";
 
 
 
@@ -15,13 +16,27 @@ const grapInfoWiki = async(path:string,page:puppeteer.Page):Promise<String>=>{
     }
 }
 
-const wikiProduct = async(productSearch:String) =>{
-
-
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
+const wikiProduct = async(productSearch:String):Promise<productModel[]> =>{
     try {
+    const browser = await puppeteer.launch({headless:true});
+    const page = await browser.newPage();
+    //optimization
+    await page.setViewport({ width: 1920, height: 1080 });
+    await page.setRequestInterception(true);
+    page.on('request',(req)=>{
+        if(req.resourceType() == 'image' || req.resourceType() == 'stylesheet' || req.resourceType()=='font')
+        {
+            req.abort();
+        }else
+        {
+            req.continue();
+        }
+    });
+    //end opt
+
+
+    var productList:productModel[] = [];
+ 
         await page.goto(`https://www.wiki.tn/recherche?controller=search&orderby=position&orderway=desc&search_query=${productSearch}&submit_search=`,{timeout:50000});
         const [xPathElem] = await page.$x('//*[@id="product_list"]');
         const nbrFils = await page.evaluate((e)=>{
@@ -40,10 +55,38 @@ const wikiProduct = async(productSearch:String) =>{
         const image:String = await grapInfoWiki(`//*[@id="product_list"]/div[${i}]/div/div[1]/div[1]/a/img/@src`,page);
         
         //price of the product
-        const price:String = await grapInfoWiki(``);
+        const price:String = await grapInfoWiki(`//*[@id="product_list"]/div[${i}]/div/div[2]/div/div[1]/div/span`,page);
+        //brand of the product
+        const brand:String = await grapInfoWiki(`//*[@id="product_list"]/div[${i}]/div/div[1]/div[2]/img/@alt`,page);
+        //description of the product
+        const description = await grapInfoWiki(`//*[@id="product_list"]/div[${i}]/div/div[2]/div/div[2]/div/span[2]`,page);
+
+        //get catégorie 
+        // const newPage = await browser.newPage();
+        // await newPage.setViewport({ width: 1920, height: 1080 });
+        // await newPage.setRequestInterception(true);
+        // newPage.on('request',(req)=>{
+        //     if(req.resourceType() == 'image' || req.resourceType() == 'stylesheet' || req.resourceType()=='font')
+        //     {
+        //         req.abort();
+        //     }else
+        //     {
+        //         req.continue();
+        //     }
+        // })
+        // await newPage.goto(href.toString());
+        // const categorieGrap:String = await grapInfoWiki('//*[@id="breadcrumb"]/div/div[1]',newPage);
+        // const categorie = categorieGrap.split('>')[categorieGrap.split('>').length - 2];
         
-        console.log({name,href,image})
+
+        productList.push({name,image,price,brand,href,description});
+        // await newPage.close();
        }
+
+    //   await page.close();
+
+      console.log(productList);
+      return productList;
         
     } catch (error) {
         console.log(error);
@@ -61,7 +104,8 @@ const wikiProduct = async(productSearch:String) =>{
 //*[@id="product_list"]/div[1]/div/div[1]/div[1]/a
 //*[@id="product_list"]/div[3]/div/div[1]/div[1]/a
 
-
+//price of product
+//*[@id="product_list"]/div[1]/div/div[2]/div/div[1]/div/span
 
 
 

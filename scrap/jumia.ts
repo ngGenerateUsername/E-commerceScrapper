@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-import { JumiaModel } from "../types/jumiaModel";
+import { productModel } from "../types/productModel";
 
 const grapInfoJumia = async (path: string, page: puppeteer.Page): Promise<String> => {
     try {
@@ -12,10 +12,24 @@ const grapInfoJumia = async (path: string, page: puppeteer.Page): Promise<String
     }
 }
 
-const jumiaProducts = async (productSearch: String):Promise<JumiaModel[] |null> => {
-    let productsJumia:JumiaModel[] = [];
+const jumiaProducts = async (productSearch: String):Promise<productModel[] |null> => {
+    let productsJumia:productModel[] = [];
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    //optimization
+    await page.setViewport({width:1920,height:1080});
+    await page.setRequestInterception(true);
+    page.on('request',(req)=>
+    {
+        if(req.resourceType() == 'image' || req.resourceType() == 'stylesheet' || req.resourceType() == 'font')
+        {
+            req.abort();
+        }else
+        {
+            req.continue();
+        }
+    }
+    )
     try {
         await page.goto(`https://www.jumia.com.tn/catalog/?q=${productSearch}&page=1#catalog-listing`, { timeout: 300000 });
         const [xPathElem] = await page.$x('//*[@id="jm"]/main/div[2]/div[3]/section/div[1]');
