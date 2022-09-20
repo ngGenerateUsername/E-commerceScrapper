@@ -29,7 +29,8 @@ const jumiaProducts = async (productSearch: String):Promise<productModel[] |null
             req.continue();
         }
     }
-    )
+    );
+    //end opt
     try {
         await page.goto(`https://www.jumia.com.tn/catalog/?q=${productSearch}&page=1#catalog-listing`, { timeout: 300000 });
         const [xPathElem] = await page.$x('//*[@id="jm"]/main/div[2]/div[3]/section/div[1]');
