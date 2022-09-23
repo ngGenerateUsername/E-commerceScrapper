@@ -40,6 +40,15 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
             return e.childNodes.length;
         },xPathElem);
         console.log(nbrFils);
+
+        for(let i  = 1 ; i <= nbrFils; i++)
+        {
+            //name
+
+            //image
+            const image:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[1]/div/div[1]/a/img/@src`,page);
+
+        }
         
     } catch (error) {
         console.log(error);
