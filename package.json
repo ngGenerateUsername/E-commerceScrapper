@@ -7,7 +7,8 @@
     "tsc": "nodemon",
     "dev": "./node_modules/.bin/ts-node-dev --respawn ./index.ts",
     "jumia": "node_modules/.bin/ts-node-dev --respawn ./scrap/jumia.ts",
-    "wiki": "node_modules/.bin/ts-node-dev --respawn ./scrap/wiki.ts"
+    "wiki": "node_modules/.bin/ts-node-dev --respawn ./scrap/wiki.ts",
+    "scoop": "node_modules/.bin/ts-node-dev --respawn ./scrap/scoop.ts"
   },
   "nodemonConfig": {
     "watch": [

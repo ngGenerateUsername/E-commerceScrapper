@@ -36,7 +36,6 @@ const jumiaProducts = async (productSearch: String):Promise<productModel[] |null
         const [xPathElem] = await page.$x('//*[@id="jm"]/main/div[2]/div[3]/section/div[1]');
         //les nombre des articles trouvée
         const nbrFils = await page.evaluate((e) => {
-            const children = e.childNodes;
             return e.childNodes.length;
         }, xPathElem)
         //loop list of products
