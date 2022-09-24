@@ -44,10 +44,17 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
         for(let i  = 1 ; i <= nbrFils; i++)
         {
             //name
-
+            const name:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[2]/h5/a`,page)
             //image
             const image:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[1]/div/div[1]/a/img/@src`,page);
+            //price
+            const price:String =  await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[2]/div[1]/span`,page);
+            //href
+            const href:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[2]/h5/a/@href`,page);
+            //description
+            const description:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[2]/p`,page);
 
+            console.log({name,image,price,href,description})
         }
         
     } catch (error) {
