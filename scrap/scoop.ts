@@ -39,7 +39,6 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
         const nbrFils = await page.evaluate((e)=>{
             return e.childNodes.length;
         },xPathElem);
-        console.log(nbrFils);
 
         for(let i  = 1 ; i <= nbrFils; i++)
         {
@@ -54,8 +53,10 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
             //description
             const description:String = await grapInfoScoop(`//*[@id="center_column"]/div[2]/ul/li[${i}]/div/div/div[2]/p`,page);
 
-            console.log({name,image,price,href,description})
+            productsScoop.push({name,image,href,description,price});
         }
+        console.log(productsScoop);
+        return productsScoop;
         
     } catch (error) {
         console.log(error);
@@ -63,7 +64,6 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
         return null;
     }
     
-return null; //deleted later
 }
 
 

@@ -5,7 +5,7 @@ export interface productModel
     image:String;
     categorie?:String|undefined;
     price:String;
-    brand:String;
+    brand?:String;
     href:String;
     description?:String |undefined;
 
