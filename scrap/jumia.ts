@@ -75,11 +75,3 @@ const jumiaProducts = async (productSearch: String):Promise<productModel[] |null
 
 
 jumiaProducts('dell g15');
-
-
-//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[1]/a
-//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[2]/a
-//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[44]/a
-//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[48]/a
-/*Price  */
-////*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[47]/a/div[2]/div

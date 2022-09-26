@@ -94,19 +94,4 @@ const wikiProduct = async(productSearch:String):Promise<productModel[]> =>{
     }
 
 };
-
-//*[@id="product_list"]/div[9]/div/div[1]/div[1]/a/img
-
-//*[@id="product_list"]/div[1]/div/div[1]/h4/a
-//*[@id="product_list"]/div[2]/div/div[1]/h4/a
-
-
-//*[@id="product_list"]/div[1]/div/div[1]/div[1]/a
-//*[@id="product_list"]/div[3]/div/div[1]/div[1]/a
-
-//price of product
-//*[@id="product_list"]/div[1]/div/div[2]/div/div[1]/div/span
-
-
-
 wikiProduct('dell')

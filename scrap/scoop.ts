@@ -68,5 +68,4 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
 
 
 
-
 scoopProducts('rog');
