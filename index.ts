@@ -7,7 +7,6 @@ import helmet from "helmet";
 var app:express.Application=express();
 const forms:multer.Multer = multer();
 
-console.log('start')
 
 app.use(express.urlencoded({extended:true}));
 app.use(bodyParser.json());

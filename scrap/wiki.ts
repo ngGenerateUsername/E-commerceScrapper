@@ -85,7 +85,6 @@ const wikiProduct = async(productSearch:String):Promise<productModel[]> =>{
 
     //   await page.close();
 
-      console.log(productList);
       return productList;
         
     } catch (error) {
@@ -94,4 +93,5 @@ const wikiProduct = async(productSearch:String):Promise<productModel[]> =>{
     }
 
 };
-wikiProduct('dell')
+//wikiProduct('dell')
+export {wikiProduct}

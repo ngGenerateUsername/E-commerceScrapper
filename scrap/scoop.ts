@@ -55,7 +55,7 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
 
             productsScoop.push({name,image,href,description,price});
         }
-        console.log(productsScoop);
+        //console.log(productsScoop);
         return productsScoop;
         
     } catch (error) {
@@ -68,4 +68,5 @@ const scoopProducts = async (productSearch: String):Promise<productModel[] |null
 
 
 
-scoopProducts('rog');
+//scoopProducts('rog');
+export {scoopProducts};

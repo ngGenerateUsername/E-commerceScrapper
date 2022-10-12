@@ -61,7 +61,7 @@ const jumiaProducts = async (productSearch: String):Promise<productModel[] |null
             //get link to the product
             const href = await grapInfoJumia(`//*[@id="jm"]/main/div[2]/div[3]/section/div[1]/article[${i}]/a/@href`, page);
             productsJumia.push({ id, name, price, brand, image, href, categorie });
-            console.log({ id, name, price, brand, image, href, categorie });
+            //console.log({ id, name, price, brand, image, href, categorie });
             
         }
         await browser.close();
@@ -74,4 +74,5 @@ const jumiaProducts = async (productSearch: String):Promise<productModel[] |null
 }
 
 
-jumiaProducts('dell g15');
+//jumiaProducts('dell g15');
+export  {jumiaProducts};
